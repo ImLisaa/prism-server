@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'net.bytebridges.prism'
+version = '1.20.4'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'jitpack'
+        url = 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    implementation 'dev.hollowcube:minestom-ce:5347c0b11f'
+    implementation 'dev.hollowcube:minestom-ce-extensions:1.2.0'
+    implementation 'net.kyori:adventure-text-minimessage:4.14.0'
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+    implementation 'io.github.classgraph:classgraph:4.8.165'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+}
+
+configurations.implementation.setCanBeResolved(true)
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.bytebridges.prism.server.PrismServerBootstrap',
+                'Multi-Release': true
+    }
+    archiveBaseName = 'prism-server-1.20.4'
+    archiveVersion = ''
+    archiveClassifier = ''
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.implementation.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "net.bytebridges.prism"
+            artifactId = 'prism-server'
+            version = "${project.version}"
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = 'https://repo.bytebridges.net/releases'
+            credentials {
+                username = System.getenv("BYTEBRIDGES_USERNAME") == null ? "" : System.getenv("BYTEBRIDGES_USERNAME")
+                password = System.getenv("BYTEBRIDGES_PASSWORD") == null ? "" : System.getenv("BYTEBRIDGES_PASSWORD")
+            }
+        }
+    }
+}
