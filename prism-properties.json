@@ -1,0 +1,15 @@
+{
+  "server-name": "prism-instance01",
+  "address": "0.0.0.0",
+  "port": 25565,
+  "player-limit": 20,
+  "motd": "A Prism Server Instance",
+  "online-mode": true,
+  "difficulty": "EASY",
+  "enable-default-commands": false,
+  "enable-default-events": false,
+  "create-default-instance": false,
+  "bungeecord-support": false,
+  "velocity-support": false,
+  "velocity-secret-key": "YOUR-VELOCITY-SECRET-KEY"
+}
