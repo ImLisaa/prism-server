@@ -15,13 +15,11 @@ repositories {
 }
 
 dependencies {
-    implementation 'dev.hollowcube:minestom-ce:5347c0b11f'
+    implementation 'dev.hollowcube:minestom-ce:1619cedc53'
     implementation 'dev.hollowcube:minestom-ce-extensions:1.2.0'
     implementation 'net.kyori:adventure-text-minimessage:4.14.0'
     implementation 'org.apache.commons:commons-lang3:3.13.0'
     implementation 'io.github.classgraph:classgraph:4.8.165'
-    implementation 'org.slf4j:slf4j-api:2.0.9'
-    implementation 'org.slf4j:slf4j-simple:2.0.9'
 }
 
 configurations.implementation.setCanBeResolved(true)
@@ -37,7 +35,7 @@ java {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'net.bytebridges.prism.server.PrismServerBootstrap',
+        attributes 'Main-Class': 'net.phantara.prism.server.PrismServerBootstrap',
                 'Multi-Release': true
     }
     archiveBaseName = 'prism-server-1.20.4'
@@ -56,7 +54,7 @@ jar {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = "net.bytebridges.prism"
+            groupId = "net.phantara.prism"
             artifactId = 'prism-server'
             version = "${project.version}"
             from components.java
@@ -64,10 +62,10 @@ publishing {
     }
     repositories {
         maven {
-            url = 'https://repo.bytebridges.net/releases'
+            url = 'https://artifactory.phantara.net/releases'
             credentials {
-                username = System.getenv("BYTEBRIDGES_USERNAME") == null ? "" : System.getenv("BYTEBRIDGES_USERNAME")
-                password = System.getenv("BYTEBRIDGES_PASSWORD") == null ? "" : System.getenv("BYTEBRIDGES_PASSWORD")
+                username = System.getenv("PHANTARA_USERNAME") == null ? "" : System.getenv("PHANTARA_USERNAME")
+                password = System.getenv("PHANTARA_PASSWORD") == null ? "" : System.getenv("PHANTARA_PASSWORD")
             }
         }
     }
