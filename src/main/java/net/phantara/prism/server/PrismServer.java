@@ -1,19 +1,18 @@
 package net.phantara.prism.server;
 
-import net.minestom.server.extensions.ExtensionManager;
-import net.phantara.prism.server.instance.InstanceProvider;
-import net.phantara.prism.server.instance.type.InstanceType;
-import net.phantara.prism.server.properties.ServerProperties;
-import net.hollowcube.minestom.extensions.ExtensionBootstrap;
 import net.kyori.adventure.text.Component;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventNode;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
+import net.minestom.server.extensions.ExtensionManager;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.bungee.BungeeCordProxy;
 import net.minestom.server.extras.velocity.VelocityProxy;
+import net.phantara.prism.server.instance.InstanceProvider;
+import net.phantara.prism.server.instance.type.InstanceType;
+import net.phantara.prism.server.properties.ServerProperties;
 
 public class PrismServer {
 
@@ -44,7 +43,7 @@ public class PrismServer {
 
         this.extensionManager.gotoInit();
 
-        server.start(this.serverProperties.getProperty("address", String.class), this.serverProperties.getProperty("port", Integer.TYPE));
+        server.start(System.getenv("RC_HOST"), Integer.parseInt(System.getenv("RC_PORT")));
 
         this.extensionManager.gotoPostInit();
     }
@@ -102,8 +101,6 @@ public class PrismServer {
             this.serverProperties.reload();
         }
 
-        if (this.serverProperties.getProperty("velocity-support", Boolean.TYPE)) {
-            VelocityProxy.enable(this.serverProperties.getProperty("velocity-secret-key", String.class));
-        }
+        VelocityProxy.enable(System.getenv("PROXY_SECRET"));
     }
 }

@@ -17,6 +17,7 @@ import java.util.List;
  **/
 
 public record PrismCommandLoader(String packageName) {
+
     public List<Class<?>> load() {
         try (ScanResult scanResult = new ClassGraph().verbose(false).enableAnnotationInfo().acceptPackages(this.packageName).scan()) {
             return scanResult.getClassesWithAnnotation(PrismCommandInject.class).loadClasses();

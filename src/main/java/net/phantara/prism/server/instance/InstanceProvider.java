@@ -104,4 +104,13 @@ public class InstanceProvider {
         Document document = new Document();
         document.addIfNotExists("identifier", containerIdentifier.toString()).write(path);
     }
+
+    public String getInstanceNameFromUniqueId(UUID uniqueId) {
+        for (Map.Entry<String, InstanceContainer> entry : this.instances.entrySet()) {
+            if (entry.getValue().getUniqueId().equals(uniqueId)) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
 }
