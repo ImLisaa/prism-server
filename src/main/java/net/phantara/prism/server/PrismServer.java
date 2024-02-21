@@ -14,6 +14,8 @@ import net.phantara.prism.server.instance.InstanceProvider;
 import net.phantara.prism.server.instance.type.InstanceType;
 import net.phantara.prism.server.properties.ServerProperties;
 
+import java.net.InetSocketAddress;
+
 public class PrismServer {
 
     private static PrismServer instance;
@@ -43,7 +45,10 @@ public class PrismServer {
 
         this.extensionManager.gotoInit();
 
-        server.start(System.getenv("RC_HOST"), Integer.parseInt(System.getenv("RC_PORT")));
+        var host = System.getenv("RC_HOST");
+        var port = Integer.parseInt(System.getenv("RC_PORT"));
+
+        server.start(new InetSocketAddress(host, port));
 
         this.extensionManager.gotoPostInit();
     }

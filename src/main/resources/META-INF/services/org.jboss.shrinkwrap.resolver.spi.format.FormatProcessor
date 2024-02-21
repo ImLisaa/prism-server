@@ -1,0 +1,7 @@
+org.jboss.shrinkwrap.resolver.impl.maven.archive.ArchiveFormatProcessor
+org.jboss.shrinkwrap.resolver.spi.format.FileFormatProcessor
+org.jboss.shrinkwrap.resolver.spi.format.URLFormatProcessor
+org.jboss.shrinkwrap.resolver.spi.format.InputStreamFormatProcessor
+org.jboss.shrinkwrap.resolver.spi.format.PathFormatProcessor
+org.jboss.shrinkwrap.resolver.impl.maven.format.MavenResolvedArtifactProcessor
+org.jboss.shrinkwrap.resolver.impl.maven.format.MavenCoordinateProcessor

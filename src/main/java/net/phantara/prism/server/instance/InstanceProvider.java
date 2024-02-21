@@ -35,6 +35,7 @@ public class InstanceProvider {
             this.instances.put(name, instanceContainer);
             this.writeIdToFile(containerId, Path.of("maps/" + name, "id.json"));
             MinecraftServer.getInstanceManager().registerInstance(instanceContainer);
+            MinecraftServer.LOGGER.info("Created Instance " + containerId + ".");
             return;
         }
         loadInstance(name);

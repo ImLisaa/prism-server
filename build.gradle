@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'net.bytebridges.prism'
-version = '2024.02.17'
+version = '2024.02.21-bugfix1-redicloud'
 
 repositories {
     mavenCentral()
@@ -12,20 +12,18 @@ repositories {
         name = 'jitpack'
         url = 'https://jitpack.io'
     }
-    maven {
-        url "https://repo.redicloud.dev/snapshots"
-    }
 }
 
 dependencies {
-    implementation 'dev.hollowcube:minestom-ce:1619cedc53'
+    implementation('com.github.Minestom:Minestom:b58db7d5b0') {
+        exclude group: "org.jboss.shrinkwrap.resolver"
+        exclude group: "shrinkwrap-resolver-depchain"
+    }
+    implementation 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:3.3.0'
     implementation 'dev.hollowcube:minestom-ce-extensions:1.2.0'
     implementation 'net.kyori:adventure-text-minimessage:4.14.0'
-    implementation 'org.apache.commons:commons-lang3:3.13.0'
-    implementation 'io.github.classgraph:classgraph:4.8.165'
-    implementation 'org.slf4j:slf4j-simple:2.1.0-alpha1'
-    implementation 'org.slf4j:slf4j-api:2.1.0-alpha1'
-
+    implementation 'ch.qos.logback:logback-core:1.5.0'
+    implementation 'ch.qos.logback:logback-classic:1.5.0'
 }
 
 configurations.implementation.setCanBeResolved(true)
@@ -44,7 +42,7 @@ jar {
         attributes 'Main-Class': 'net.phantara.prism.server.PrismServerBootstrap',
                 'Multi-Release': true
     }
-    archiveBaseName = 'prism-server-1.20.4'
+    archiveBaseName = 'prism-server-1.20.4 (redicloud)'
     archiveVersion = ''
     archiveClassifier = ''
 
