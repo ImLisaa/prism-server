@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'net.bytebridges.prism'
-version = '1.20.4'
+version = '2024.02.21-bugfix2'
 
 repositories {
     mavenCentral()
@@ -15,11 +15,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'dev.hollowcube:minestom-ce:1619cedc53'
+    implementation('com.github.Minestom:Minestom:b58db7d5b0') {
+        exclude group: "org.jboss.shrinkwrap.resolver"
+        exclude group: "shrinkwrap-resolver-depchain"
+    }
+    implementation 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:3.3.0'
     implementation 'dev.hollowcube:minestom-ce-extensions:1.2.0'
     implementation 'net.kyori:adventure-text-minimessage:4.14.0'
-    implementation 'org.apache.commons:commons-lang3:3.13.0'
-    implementation 'io.github.classgraph:classgraph:4.8.165'
+    implementation 'ch.qos.logback:logback-core:1.5.0'
+    implementation 'ch.qos.logback:logback-classic:1.5.0'
 }
 
 configurations.implementation.setCanBeResolved(true)
