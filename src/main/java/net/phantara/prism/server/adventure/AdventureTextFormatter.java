@@ -19,6 +19,10 @@ public class AdventureTextFormatter {
     }
 
     public Component getComponent() {
-        return component;
+        return this.component;
+    }
+
+    public Component getSmallCapsFormattedComponent() {
+        return this.component.replaceText(builder -> builder.match(" ").replacement("   "));
     }
 }
