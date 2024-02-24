@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'net.bytebridges.prism'
-version = '2024.02.21-bugfix1-redicloud'
+version = '2024.02.21-bugfix2-redicloud'
 
 repositories {
     mavenCentral()

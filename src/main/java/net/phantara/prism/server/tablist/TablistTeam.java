@@ -61,6 +61,6 @@ public class TablistTeam {
     }
 
     public void toTeam(TeamManager manager) {
-        this.team = new TeamBuilder(this.name, manager).updateTeamColor(this.textColor).updatePrefix(this.prefix).collisionRule(TeamsPacket.CollisionRule.NEVER).build();
+        this.team = new TeamBuilder(this.name, manager).updatePrefix(this.prefix).collisionRule(TeamsPacket.CollisionRule.NEVER).build();
     }
 }
